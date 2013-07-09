@@ -35,7 +35,7 @@ namespace Mixtagram_API.Controllers
             };
             var mongoClient = new MongoClient(settings);
             */
-            var connectionString = "mongodb://admin:mixtagram01!@172.16.252.1";
+            var connectionString = "mongodb://mixtagram:mixtagram01!@172.16.252.1/mixtagram";
             var client = new MongoClient(connectionString);
             var server = client.GetServer();
             var database = server.GetDatabase("mixtagram");
