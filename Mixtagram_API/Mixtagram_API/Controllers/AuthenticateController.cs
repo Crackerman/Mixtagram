@@ -6,6 +6,12 @@ using System.Net.Http;
 using System.Web.Http;
 using Mixtagram_API.Models;
 
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
+using MongoDB.Driver.GridFS;
+using MongoDB.Driver.Linq;
+
 namespace Mixtagram_API.Controllers
 {
     public class AuthenticateController : ApiController
@@ -21,6 +27,28 @@ namespace Mixtagram_API.Controllers
 
         public Authenticate Get()
         {
+            /*
+            var credential = MongoCredential.CreateMongoCRCredential("test", "user1", "password1");
+            var settings = new MongoClientSettings
+            {
+                Credentials = new[] { credential }
+            };
+            var mongoClient = new MongoClient(settings);
+            */
+            var connectionString = "mongodb://admin:mixtagram01!@172.16.252.1";
+            var client = new MongoClient(connectionString);
+            var server = client.GetServer();
+            var database = server.GetDatabase("mixtagram");
+            var collection = database.GetCollection<User>("users");
+
+            var query =
+                from u in collection.AsQueryable<User>()
+                where u.user == "test"
+                select u;
+
+            User user = query.First();
+            response.ErrorDesc = user.user + ", " + user.pwd;
+
             return response;
         }
 
