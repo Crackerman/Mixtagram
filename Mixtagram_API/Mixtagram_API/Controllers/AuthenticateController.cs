@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Mixtagram_API.Models;
+using Mixtagram_API.HelperClasses;
 
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -16,38 +17,48 @@ namespace Mixtagram_API.Controllers
 {
     public class AuthenticateController : ApiController
     {
-        Authenticate response = new Authenticate
+        public Authenticate Get(string email = null, string password = null)
         {
-            Success = true
-            ,ErrorCode = null
-            ,ErrorDesc = null
-            ,UserID = "29469225-2ED4-47FE-BCC1-3594A9FE152F"
-            ,SessionID = "A7BC617A-734A-416E-AB5B-EE1FE04B2EEA"
-        };
+            Authenticate response = new Authenticate { Success = false };
 
-        public Authenticate Get()
-        {
-            /*
-            var credential = MongoCredential.CreateMongoCRCredential("test", "user1", "password1");
-            var settings = new MongoClientSettings
+            //Check for required parameters/fields
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
-                Credentials = new[] { credential }
-            };
-            var mongoClient = new MongoClient(settings);
-            */
-            var connectionString = "mongodb://mixtagram:mixtagram01!@172.16.252.1/mixtagram";
-            var client = new MongoClient(connectionString);
-            var server = client.GetServer();
-            var database = server.GetDatabase("mixtagram");
-            var collection = database.GetCollection<User>("users");
+                response.Success = false;
+                response.ErrorCode = "1";
+                response.ErrorDesc = "Required field is missing.";
+
+                return response;
+            }
+
+            //Authenticate
+            var db = Database.GetMixtagramDatabase();
+            var collection = db.GetCollection<User>("users");
 
             var query =
                 from u in collection.AsQueryable<User>()
-                where u.user == "test"
+                where u.Email == email && u.Password == password
                 select u;
 
-            User user = query.First();
-            response.ErrorDesc = user.user + ", " + user.pwd;
+            List<User> users = query.ToList();
+            if (users.Count() > 0)
+            {
+                User user = users[0];
+                response.Success = true;
+
+                //Create session identifier
+                user.SessionID = Guid.NewGuid().ToString();
+                collection.Save(user);
+                response.SessionID = user.SessionID;
+
+                response.UserID = user.id.ToString();
+            }
+            else
+            {
+                response.Success = false;
+                response.ErrorCode = "2";
+                response.ErrorDesc = "Invalid email address/password combination.";
+            }
 
             return response;
         }

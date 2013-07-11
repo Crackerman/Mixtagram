@@ -10,8 +10,10 @@ namespace Mixtagram_API.Models
     public class User
     {
         public ObjectId id { get; set; }
-        public string user { get; set; }
-        public string pwd { get; set; }
-        public string[] roles { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string SessionID { get; set; }
     }
 }
