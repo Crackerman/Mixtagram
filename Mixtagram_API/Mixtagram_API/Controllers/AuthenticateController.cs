@@ -63,6 +63,11 @@ namespace Mixtagram_API.Controllers
             return response;
         }
 
+        public Authenticate Post([FromBody]string value)
+        {
+            return new Authenticate();
+        }
+
         /*
         // GET api/authenticate
         public IEnumerable<string> Get()

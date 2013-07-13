@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<form action="/api/Authenticate/Post?xml=true" method="post">
+    <fieldset>
+        <table>
+            <tr><td>Email:</td><td><input type="text" id="Email" /></td></tr>
+            <tr><td>Password:</td><td><input type="text" id="Password" /></td></tr>
+            <tr><td colspan="2"><input type="submit" id="submit" value="Submit" /></td></tr>
+        </table>
+    </fieldset>
+</form>
