@@ -23,19 +23,19 @@ namespace Mixtagram_API.Controllers
 
     public class AuthenticateController : ApiController
     {
-        public Authenticate Get(string email = null, string password = null)
+        public AuthenticateResponse Get(string email = null, string password = null)
         {
             return Authenticate(email, password);
         }
 
-        public Authenticate Post(AuthenticatePost post)
+        public AuthenticateResponse Post(AuthenticatePost post)
         {
             return Authenticate(post.Email, post.Password);
         }
 
-        private Authenticate Authenticate(string email, string password)
+        private AuthenticateResponse Authenticate(string email, string password)
         {
-            Authenticate response = new Authenticate { Success = false };
+            AuthenticateResponse response = new AuthenticateResponse { Success = false };
 
             //Check for required parameters/fields
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
@@ -48,7 +48,7 @@ namespace Mixtagram_API.Controllers
             }
 
             //Authenticate
-            var db = Database.GetMixtagramDatabase();
+            var db = MongoDBHelper.GetMixtagramDatabase();
             var collection = db.GetCollection<User>("users");
 
             var query =

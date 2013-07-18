@@ -12,7 +12,7 @@ using MongoDB.Driver.Linq;
 
 namespace Mixtagram_API.HelperClasses
 {
-    public class Database
+    public class MongoDBHelper
     {
         public static MongoDatabase GetMixtagramDatabase()
         {

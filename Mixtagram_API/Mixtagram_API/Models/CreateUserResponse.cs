@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Mixtagram_API.Models
 {
-    public class Authenticate
+    public class CreateUserResponse
     {
         public bool Success { get; set; }
         public string ErrorCode { get; set; }
