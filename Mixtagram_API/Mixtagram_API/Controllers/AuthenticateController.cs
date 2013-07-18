@@ -30,7 +30,7 @@ namespace Mixtagram_API.Controllers
 
         public Authenticate Post(AuthenticatePost post)
         {
-            return new Authenticate { ErrorDesc = post.Email };
+            return Authenticate(post.Email, post.Password);
         }
 
         private Authenticate Authenticate(string email, string password)
