@@ -4,12 +4,32 @@
 
 <h2>Index</h2>
 
-<form action="/api/Authenticate/Post?xml=true" method="post">
+<form id="postAuthentication" action="/api/Authenticate/Post?xml=true" method="post">
     <fieldset>
         <table>
-            <tr><td>Email:</td><td><input type="text" id="Email" /></td></tr>
-            <tr><td>Password:</td><td><input type="text" id="Password" /></td></tr>
-            <tr><td colspan="2"><input type="submit" id="submit" value="Submit" /></td></tr>
+            <tr><td>Email:</td><td><input type="text" name="Email" /></td></tr>
+            <tr><td>Password:</td><td><input type="text" name="Password" /></td></tr>
+            <tr><td colspan="2"><input type="button" id="submit" value="Submit" /></td></tr>
         </table>
     </fieldset>
 </form>
+
+<div id="response"></div>
+
+@section scripts {
+<script type="text/javascript">
+$('#submit').click(
+    function ()
+    {
+        $.post("/api/Authenticate/Post",
+            $("#postAuthentication").serialize(),
+            function(value)
+            {
+                $('#response').text(value.ErrorDesc);
+            },
+            "json"
+        );
+    }
+);
+</script>
+}
