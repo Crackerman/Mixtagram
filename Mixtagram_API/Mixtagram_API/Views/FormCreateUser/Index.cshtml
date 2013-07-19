@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Create User Form</h2>
+
+<form id="postAuthentication" action="/api/CreateUser/Post?xml=true" method="post">
+    <fieldset>
+        <table>
+            <tr><td>FirstName:</td><td><input type="text" name="FirstName" /></td></tr>
+            <tr><td>LastName:</td><td><input type="text" name="LastName" /></td></tr>
+            <tr><td>Email:</td><td><input type="text" name="Email" /></td></tr>
+            <tr><td>Password:</td><td><input type="text" name="Password" /></td></tr>
+            <tr><td>CCNumber:</td><td><input type="text" name="CCNumber" /></td></tr>
+            <tr><td>CCExpiration:</td><td><input type="text" name="CCExpiration" /></td></tr>
+            <tr><td>CCZip:</td><td><input type="text" name="CCZip" /></td></tr>
+            <tr><td>CCSecurityCode:</td><td><input type="text" name="CCSecurityCode" /></td></tr>
+            <tr><td colspan="2"><input type="submit" id="submit" value="Submit" /></td></tr>
+        </table>
+    </fieldset>
+</form>

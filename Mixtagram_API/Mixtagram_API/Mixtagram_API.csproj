@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\CreateUserController.cs" />
     <Compile Include="Controllers\FormAuthController.cs" />
+    <Compile Include="Controllers\FormCreateUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -138,7 +139,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HelperClasses\MongoDBHelper.cs" />
+    <Compile Include="Models\AuthenticatePost.cs" />
     <Compile Include="Models\AuthenticateResponse.cs" />
+    <Compile Include="Models\CreateUserPost.cs" />
     <Compile Include="Models\CreateUserResponse.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Product.cs" />
@@ -246,6 +249,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\FormAuth\Index.cshtml" />
+    <Content Include="Views\FormCreateUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,12 +15,6 @@ using MongoDB.Driver.Linq;
 
 namespace Mixtagram_API.Controllers
 {
-    public class AuthenticatePost
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
-    }
-
     public class AuthenticateController : ApiController
     {
         public AuthenticateResponse Get(string email = null, string password = null)
