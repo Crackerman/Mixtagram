@@ -130,6 +130,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\CreateUserController.cs" />
+    <Compile Include="Controllers\FormGetUserController.cs" />
+    <Compile Include="Controllers\GetUserController.cs" />
     <Compile Include="Controllers\FormAuthController.cs" />
     <Compile Include="Controllers\FormCreateUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -143,6 +145,8 @@
     <Compile Include="Models\AuthenticateResponse.cs" />
     <Compile Include="Models\CreateUserPost.cs" />
     <Compile Include="Models\CreateUserResponse.cs" />
+    <Compile Include="Models\GetUserPost.cs" />
+    <Compile Include="Models\GetUserResponse.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -250,6 +254,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\FormAuth\Index.cshtml" />
     <Content Include="Views\FormCreateUser\Index.cshtml" />
+    <Content Include="Views\FormGetUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Get User Form</h2>
+
+<form id="postGetUser" action="/api/GetUser/Post?xml=true" method="post">
+    <fieldset>
+        <table>
+            <tr><td>UserID:</td><td><input type="text" name="UserID" /></td></tr>
+            <tr><td>SessionID:</td><td><input type="text" name="SessionID" /></td></tr>
+            <tr><td colspan="2"><input type="submit" id="submit" value="Submit" /></td></tr>
+        </table>
+    </fieldset>
+</form>
